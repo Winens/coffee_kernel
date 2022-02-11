@@ -3,6 +3,8 @@
 limine/
 CMakeFiles/
 build/
+build_root/
+distro_root/
 
 *.o
 *.elf
