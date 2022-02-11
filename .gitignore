@@ -2,6 +2,7 @@
 .vscode/
 limine/
 CMakeFiles/
+build/
 
 *.o
 *.elf
