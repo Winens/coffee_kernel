@@ -1,10 +1,14 @@
 .idea/
 .vscode/
 limine/
+CMakeFiles/
 
 *.o
 *.elf
 *.iso
 *.hdd
 
+cmake_install.cmake
+CMakeCache.txt
+Makefile
 loopback_dev
