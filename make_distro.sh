@@ -26,7 +26,7 @@ if [ $1 == "--confirm" ];then
         sudo losetup -d `cat loopback_dev`
         rm -rf build_root loopback_dev
         limine/limine-install $distro_file_name.hdd
-        if [ $2 == "--run" ]; then
+        if [ $2 ]; then
             qemu-system-x86_64 -d int -machine q35 -smp 4 -hda $distro_file_name.hdd -debugcon stdio -m 2G -enable-kvm
         fi
       else
