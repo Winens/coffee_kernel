@@ -6,6 +6,7 @@ CMakeFiles/
 build/
 build_root/
 distro_root/
+Testing/
 
 *.o
 *.elf
