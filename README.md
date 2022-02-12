@@ -1,6 +1,4 @@
 # :coffee: Coffee_OS
-## X86_64 UNIX-Like Operating System
-
 # Make Your Own Coffee Distro
 It is so simple to make.
 * 1- Build Kernel `cmake . && make`
