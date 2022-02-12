@@ -1,5 +1,5 @@
 distro_file_name="coffee_os"
-tname=">==  Coffee_OS Distro Builder  <=="
+tname=">==  Coffee_OS Distro Builder  ==<"
 if [ $1 == "--confirm" ];then
   echo $tname
   if [ -f "coffee.elf" ]; then
