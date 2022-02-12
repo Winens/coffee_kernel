@@ -32,7 +32,11 @@ if [ $1 == "--confirm" ];then
           fi
         fi
       else
-        echo "Bootloader could not found! EXITED."
+        echo "Bootloader could not found!   => Downloading..."
+        rm -rf limine
+        git clone https://github.com/limine-bootloader/limine.git --branch=v2.0-branch-binary --depth=1
+        make -C limine
+        echo "  => Completed! Run Again."
       fi
     else
       echo "Bootloader-config file could not found! EXITED."
