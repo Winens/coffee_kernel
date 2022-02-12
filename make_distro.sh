@@ -5,7 +5,7 @@ if [ $1 == "--confirm" ];then
   if [ -f "coffee.elf" ]; then
     if [ -f "limine.cfg" ]; then
       if [ -f "limine/limine.sys" ]; then
-        rm -rf build_root/ $distro_file_name.hdd
+        sudo rm -rf build_root/ $distro_file_name.hdd
         mkdir -p build_root/
         if [ -d "distro_root" ]; then
           cp -rp distro_root/* build_root/
@@ -22,12 +22,14 @@ if [ $1 == "--confirm" ];then
         sudo cp -rv coffee.elf build_root/boot/
         sudo cp -rv limine.cfg build_root/
         sync
-        sudo umount build_root/
+        sudo umount build_root
         sudo losetup -d `cat loopback_dev`
-        rm -rf build_root loopback_dev
+        sudo rm -rf build_root loopback_dev
         limine/limine-install $distro_file_name.hdd
         if [ $2 ]; then
+          if [ $2 == "--run" ]; then
             qemu-system-x86_64 -d int -machine q35 -smp 4 -hda $distro_file_name.hdd -debugcon stdio -m 2G -enable-kvm
+          fi
         fi
       else
         echo "Bootloader could not found! EXITED."
