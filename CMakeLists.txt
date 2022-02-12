@@ -2,7 +2,6 @@ cmake_minimum_required(VERSION 3.0.0)
 project(coffee)
 set(KERNEL_BUILD coffee.elf)
 
-file(GLOB SRC_FILES "kernel/main.c" "kernel/*.s")
 include_directories(kernel)
 
 set(CMAKE_ASM_NASM_OBJECT_FORMAT elf)
@@ -11,5 +10,5 @@ enable_language(ASM_NASM)   # Enabling NASM Assembly
 set(CMAKE_C_FLAGS "-std=gnu11 -ffreestanding -fno-stack-protector -fno-pic -fpie -mno-80387 -mno-mmx -mno-3dnow -mno-sse -mno-sse2 -mno-red-zone")
 set(CMAKE_EXE_LINKER_FLAGS "-fno-pic -fpie -Wl,-static,-pie,--no-dynamic-linker,-ztext -static-pie -nostdlib -Tlinker.ld -z max-page-size=0x1000")
 
-add_executable(${KERNEL_BUILD} ${SRC_FILES})
+add_executable(${KERNEL_BUILD} kernel/boot/boot.c)
 set_target_properties(${KERNEL_BUILD} PROPERTIES LINK_DEPENDS linker.ld)
