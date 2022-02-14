@@ -1,6 +1,6 @@
 distro_file_name="coffee_os"
 tname=">==  Coffee_OS Distro Builder  ==<"
-if [ $1 == "--confirm" ];then
+if [ $1 ] && [ $1 == "--confirm" ];then
   echo $tname
   if [ -f "coffee.elf" ]; then
     if [ -f "limine.cfg" ]; then
@@ -26,10 +26,8 @@ if [ $1 == "--confirm" ];then
         sudo losetup -d `cat loopback_dev`
         sudo rm -rf build_root loopback_dev
         limine/limine-install $distro_file_name.hdd
-        if [ $2 ]; then
-          if [ $2 == "--run" ]; then
-            qemu-system-x86_64 -d int -machine q35 -smp 4 -hda $distro_file_name.hdd -debugcon stdio -m 2G -enable-kvm
-          fi
+        if [ $2 ] && [ $2 == "--run" ]; then
+          qemu-system-x86_64 -d int -machine q35 -smp 4 -hda $distro_file_name.hdd -debugcon stdio -m 2G -enable-kvm
         fi
       else
         echo "Bootloader could not found!   => Downloading..."
@@ -44,11 +42,11 @@ if [ $1 == "--confirm" ];then
   else
     echo "Kernel file could not found! EXITED."
   fi
-elif [ $1 == "--root" ]; then
+elif [ $1 ] && [ $1 == "--root" ]; then
   mkdir -p distro_root/
   echo "DO NOT COPY KERNEL OR BOOTLOADER INTO THIS FOLDER 'distro_root/'"
 
-elif [ $1 == "--run" ]; then
+elif [ $1 ] && [ $1 == "--run" ]; then
   qemu-system-x86_64 -d int -machine q35 -smp 4 -hda $distro_file_name.hdd -debugcon stdio -m 2G -enable-kvm
 else
   echo "Use --confirm"
