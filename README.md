@@ -8,8 +8,7 @@ It is so simple to make.
 You Can Run With QEMU `./make_distro --run`
 
 # Roadmap
-- [ ] VBE Graphics
-- [ ] GDT
+- [ ] Graphics
 - [ ] Memory Management
 - [ ] Interrupts
 - [ ] Kernel Threads
