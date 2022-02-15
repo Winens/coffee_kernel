@@ -14,8 +14,6 @@ void _start(struct stivale2_struct *stivale2_struct) {
     struct stivale2_struct_tag_memmap *_mmap = stivale2_get_tag(stivale2_struct, STIVALE2_STRUCT_TAG_MEMMAP_ID);
 
     Driver_Graphics_Exec((uint32_t *) _framebuffer->framebuffer_addr, _framebuffer->framebuffer_width, _framebuffer->framebuffer_height, _framebuffer->framebuffer_pitch);
-    _DRAW_CHAR('E');
-    _DRAW_CHAR('P');
 
     for (;;) {
         asm ("hlt");
