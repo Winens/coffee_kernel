@@ -8,11 +8,14 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <drivers/graphics/font.h>
 
 uint32_t *_framebuffer;
 uint16_t _w, _h, _pitch;
 
-int _cursor_x, _cursor_y = 0;
+int _cursor_x, _cursor_y; // = 0
+uint8_t *_font_bm;
+uint16_t _font_w = 8, _font_h = 16;
 
 void _CLEAN_TERMINAL(void){
     //b_width * fb_pitch / sizeof(uint32_t)
@@ -26,13 +29,28 @@ void _CLEAN_TERMINAL(void){
 }
 
 void Driver_Graphics_Exec(uint32_t *fb, uint32_t w, uint32_t h, uint32_t pitch){
-    _framebuffer = fb;  //stivale2_get_tag(fb, STIVALE2_STRUCT_TAG_FRAMEBUFFER_ID);
+    _framebuffer = fb;
     _w = w;
     _h = h;
     _pitch = pitch;
     _CLEAN_TERMINAL();
+    _font_bm = (uint8_t *) &font; // font;
 }
 
-void _DRAW_PIXEL(uint32_t x, uint32_t y, uint32_t color){
+void _DRAW_PIXEL(int x, int y, uint32_t color){
     _framebuffer[y * (_pitch / sizeof(uint32_t)) + x] = color;
+}
+
+void _DRAW_CHAR(unsigned char c){
+    int mask[8] = {1,2,4,8,16,32,64,128};
+    //unsigned char *glyph = font+(int)c*16;
+    unsigned  char *glyph = &_font_bm[c * _font_h];
+    for(int _draw_y = 0; _draw_y < 16; _draw_y++){
+        for(int _draw_x = 0; _draw_x < 8; _draw_x++){
+                //if(glyph[_draw_y]&mask[_draw_x]) _DRAW_PIXEL((_cursor_x*_font_w)+_draw_x, (_cursor_y*_font_h)+_draw_y, DEF_TXT_COL);
+                if(glyph[_draw_y]&(1 << _draw_x)) _DRAW_PIXEL((_cursor_x*_font_w)+_draw_x, (_cursor_y*_font_h)+_draw_y, DEF_TXT_COL);
+
+        }
+    }
+    _cursor_x++;
 }

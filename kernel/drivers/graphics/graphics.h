@@ -7,11 +7,13 @@
 // Supports VBE, VGA And GOP
 
 #include <stdint.h>
+#include <stddef.h>
 
 #define DEF_BG_COL 0x000000
 #define DEF_TXT_COL 0xFFFFFF
 
 void Driver_Graphics_Exec(uint32_t *fb, uint32_t w, uint32_t h, uint32_t pitch);
-void _DRAW_PIXEL(uint32_t x, uint32_t y, uint32_t color);
+void _DRAW_PIXEL(int x, int y, uint32_t color);
+void _DRAW_CHAR(unsigned char c);
 
 #endif //COFFEE_GRAPHICS_H
