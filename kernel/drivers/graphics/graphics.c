@@ -18,7 +18,6 @@ uint8_t *_font_bm;
 uint16_t _font_w = 8, _font_h = 16;
 
 void _CLEAN_TERMINAL(void){
-    //b_width * fb_pitch / sizeof(uint32_t)
     for(size_t w = 0; w < _w; w++){
         for(size_t h = 0; h < _h; h++){
             _DRAW_PIXEL(w, h, DEF_BG_COL);
@@ -58,4 +57,16 @@ void _DRAW_CHAR(unsigned char c){
         _draw_y++;
     }
     _cursor_x++;
+}
+
+int _CALC_CC_LENGTH(const char *s){
+    int _s = 0;
+    while(s[_s] != '\0') _s++;
+    return _s;
+}
+
+void _DRAW_STRING(const char *s){
+    for(int _r = 0; _r <= _CALC_CC_LENGTH(s); _r++){
+        _DRAW_CHAR(s[_r]);
+    }
 }
