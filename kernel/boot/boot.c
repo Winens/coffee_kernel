@@ -8,6 +8,7 @@
 #include <boot/stivale2_funcs.h>
 #include <drivers/graphics/graphics.h>
 #include <mm/mm.h>
+#include <stdio.h>
 
 void _start(struct stivale2_struct *stivale2_struct) {
 

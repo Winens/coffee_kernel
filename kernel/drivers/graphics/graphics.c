@@ -65,7 +65,7 @@ int _CALC_CC_LENGTH(const char *s){
 }
 
 void _DRAW_STRING(const char *s){
-    for(int _r = 0; _r <= _CALC_CC_LENGTH(s); _r++){
+    for(int _r = 0; _r <= _CALC_CC_LENGTH(s)-1; _r++){
         _DRAW_CHAR(s[_r]);
     }
 }
