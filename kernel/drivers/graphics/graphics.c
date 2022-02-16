@@ -47,7 +47,6 @@ void _DRAW_CHAR(unsigned char c){
     int _draw_x = _cursor_x * _font_w;
     int _draw_y = _cursor_y * _font_h;
 
-    //unsigned  char *glyph = &_font_bm[c * _font_h];
     for(int _y = 0; _y < _font_h; _y++){
         for(int _x = _font_w - 1; _x >= 0; _x--){
             _draw_x++;
