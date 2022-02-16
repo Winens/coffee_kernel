@@ -9,8 +9,8 @@
 #include <stddef.h>
 
 struct _memory {
-    size_t total;
-    size_t usable;
+    size_t _total;
+    size_t _usable;
 };
 
 void Memory_Map_Exec(uint32_t *mmap);
