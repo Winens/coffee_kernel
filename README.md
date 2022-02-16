@@ -13,8 +13,8 @@ You Can Run With QEMU `./make_distro --run`
 - [ ] Interrupts
 - [ ] Kernel Threads
 - [ ] Keyboard
-- [ ] Wish Shell
 - [ ] File System
+- [ ] Wish Shell
 - [ ] Network Manager
 
 **End of Project**
