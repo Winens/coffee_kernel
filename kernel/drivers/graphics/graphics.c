@@ -5,10 +5,10 @@
 #include <drivers/graphics/graphics.h>
 #include <boot/stivale2.h>
 #include <boot/stivale2_funcs.h>
+#include <drivers/graphics/font.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
-#include <drivers/graphics/font.h>
 
 uint32_t *_framebuffer;
 uint16_t _w, _h, _pitch;
@@ -42,7 +42,7 @@ void _DRAW_PIXEL(int x, int y, uint32_t color){
 
 void _DRAW_CHAR(unsigned char c){
     int mask[8] = {1,2,4,8,16,32,64,128};
-    unsigned char *glyph = font+(int)c*16;
+    unsigned char *glyph = _font_bm+(int)c*16;
 
     int _draw_x = _cursor_x * _font_w;
     int _draw_y = _cursor_y * _font_h;
