@@ -5,7 +5,7 @@
 #include <drivers/graphics/graphics.h>
 #include <boot/stivale2.h>
 #include <boot/stivale2_funcs.h>
-#include <drivers/graphics/font.h>
+#include <drivers/graphics/_font.h>
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
@@ -40,7 +40,7 @@ void Driver_Graphics_Exec(uint32_t *fb, uint32_t w, uint32_t h, uint32_t pitch){
     _h = h;
     _pitch = pitch;
     _CLEAN_TERMINAL();
-    _font_bm = (uint8_t *) &font;
+    _font_bm = (uint8_t *) &_font;
 }
 
 void _DRAW_PIXEL(int x, int y, uint32_t color){
@@ -49,7 +49,7 @@ void _DRAW_PIXEL(int x, int y, uint32_t color){
 
 void _DRAW_CHAR(unsigned char c){
     int mask[8] = {1,2,4,8,16,32,64,128};
-    unsigned char *glyph = _font_bm+(int)c*16;
+    unsigned char *glyph = _font_bm+(int)c*_font_h;
 
     int _draw_x = _cursor_x * _font_w;
     if(_draw_x >= _cmd_max_width){
