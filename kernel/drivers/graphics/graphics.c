@@ -13,11 +13,12 @@
 uint32_t *_framebuffer;
 uint16_t _w, _h, _pitch;
 
-int _cursor_x = 1, _cursor_y = 1; // = 0
 uint8_t *_font_bm;
 uint16_t _font_w = 8, _font_h = 16;
 
-void _CLEAN_TERMINAL(void){
+int _cmd_max_width, _cursor_x, _cursor_y = 0;
+
+void _CLEAN_TERMINAL(){
     for(size_t w = 0; w < _w; w++){
         for(size_t h = 0; h < _h; h++){
             _DRAW_PIXEL(w, h, DEF_BG_COL);
@@ -27,13 +28,19 @@ void _CLEAN_TERMINAL(void){
     _cursor_y = 0;
 }
 
+void _NEW_LINE(){
+    _cursor_y++;
+    _cursor_x = 0;
+}
+
 void Driver_Graphics_Exec(uint32_t *fb, uint32_t w, uint32_t h, uint32_t pitch){
+    _cmd_max_width = w;
     _framebuffer = fb;
     _w = w;
     _h = h;
     _pitch = pitch;
     _CLEAN_TERMINAL();
-    _font_bm = (uint8_t *) &font; // font;
+    _font_bm = (uint8_t *) &font;
 }
 
 void _DRAW_PIXEL(int x, int y, uint32_t color){
@@ -43,8 +50,12 @@ void _DRAW_PIXEL(int x, int y, uint32_t color){
 void _DRAW_CHAR(unsigned char c){
     int mask[8] = {1,2,4,8,16,32,64,128};
     unsigned char *glyph = _font_bm+(int)c*16;
-
+    //_cursor_y = 1;
     int _draw_x = _cursor_x * _font_w;
+    if(_draw_x >= _cmd_max_width){
+        _NEW_LINE();
+        _draw_x = _cursor_x * _font_w;
+    }
     int _draw_y = _cursor_y * _font_h;
 
     for(int _y = 0; _y < _font_h; _y++){
@@ -52,7 +63,7 @@ void _DRAW_CHAR(unsigned char c){
             _draw_x++;
             if (glyph[_y]&mask[_x]) _DRAW_PIXEL(_draw_x, _draw_y, DEF_TXT_COL);
         }
-        _draw_x -= 8;
+        _draw_x -= _font_w;
         _draw_y++;
     }
     _cursor_x++;

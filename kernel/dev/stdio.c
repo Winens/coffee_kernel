@@ -7,6 +7,7 @@
 #include <stdbool.h>
 #include <stdarg.h>
 #include <stddef.h>
+#include <drivers/graphics/graphics.h>
 
 size_t strlen(const char* str)
 {
@@ -102,6 +103,8 @@ void printf(const char *s, ...){
             } else if(*s == 's'){
                 _DRAW_STRING(va_arg(v, const char*));
             }
+        } else if (*s == '\n') {
+            _NEW_LINE();
         } else {
             _DRAW_CHAR(*s);
         }
