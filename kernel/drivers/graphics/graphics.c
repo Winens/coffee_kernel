@@ -50,7 +50,7 @@ void _DRAW_PIXEL(int x, int y, uint32_t color){
 void _DRAW_CHAR(unsigned char c){
     int mask[8] = {1,2,4,8,16,32,64,128};
     unsigned char *glyph = _font_bm+(int)c*16;
-    //_cursor_y = 1;
+
     int _draw_x = _cursor_x * _font_w;
     if(_draw_x >= _cmd_max_width){
         _NEW_LINE();
