@@ -9,9 +9,6 @@
 #include <stdint.h>
 #include <stddef.h>
 
-#define DEF_BG_COL 0x1e1f29
-#define DEF_TXT_COL 0Xf8f8f2
-
 void _NEW_LINE();
 void Driver_Graphics_Exec(uint32_t *fb, uint32_t w, uint32_t h, uint32_t pitch);
 void _DRAW_PIXEL(int x, int y, uint32_t color);

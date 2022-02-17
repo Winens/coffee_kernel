@@ -9,6 +9,7 @@
 #include <stdint.h>
 #include <stdbool.h>
 #include <stddef.h>
+#include <stdio.h>
 
 uint32_t *_framebuffer;
 uint16_t _w, _h, _pitch;
@@ -21,7 +22,7 @@ int _cmd_max_width, _cursor_x, _cursor_y = 0;
 void _CLEAN_TERMINAL(){
     for(size_t w = 0; w < _w; w++){
         for(size_t h = 0; h < _h; h++){
-            _DRAW_PIXEL(w, h, DEF_BG_COL);
+            _DRAW_PIXEL(w, h, __COL_DARK);
         }
     }
     _cursor_x = 0;
@@ -61,7 +62,7 @@ void _DRAW_CHAR(unsigned char c){
     for(int _y = 0; _y < _font_h; _y++){
         for(int _x = _font_w - 1; _x >= 0; _x--){
             _draw_x++;
-            if (glyph[_y]&mask[_x]) _DRAW_PIXEL(_draw_x, _draw_y, DEF_TXT_COL);
+            if (glyph[_y]&mask[_x]) _DRAW_PIXEL(_draw_x, _draw_y, __COL_LIGHT);
         }
         _draw_x -= _font_w;
         _draw_y++;
