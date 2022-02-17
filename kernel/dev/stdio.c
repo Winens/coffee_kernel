@@ -112,3 +112,34 @@ void printf(const char *s, ...){
     }
     va_end(v);
 }
+
+void _kernel_log(const char* _title, int _title_col, const char* _index, ...){
+    _DRAW_CHAR_C('[', _title_col);
+    for(int _r = 0; _r <= _CALC_CC_LENGTH(_title)-1; _r++){
+        _DRAW_CHAR_C(_title[_r], _title_col);
+    }
+    _DRAW_CHAR_C(']', _title_col);
+    _DRAW_STRING(" => ");
+    va_list v;
+    va_start(v, _index);
+    const char *_tmp_i2c;
+    while(*_index){
+        if(*_index == '%') {
+            _index++;    // Next char
+            if(*_index == '%'){
+                _DRAW_CHAR('%');
+            } else if(*_index == 'd'){
+                itoa(va_arg(v, int), _tmp_i2c);
+                _DRAW_STRING(_tmp_i2c);
+            } else if(*_index == 's'){
+                _DRAW_STRING(va_arg(v, const char*));
+            }
+        } else if (*_index == '\n') {
+            _NEW_LINE();
+        } else {
+            _DRAW_CHAR(*_index);
+        }
+        _index++;
+    }
+    va_end(v);
+}

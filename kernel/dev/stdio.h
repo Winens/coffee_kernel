@@ -20,5 +20,6 @@ void* memset(void*, int, size_t);
 size_t strlen(const char*);
 
 void printf(const char *s, ...);
+void _kernel_log(const char* _title, int _title_col, const char* _index, ...);
 
 #endif //COFFEE_STDIO_H

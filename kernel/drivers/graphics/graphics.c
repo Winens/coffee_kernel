@@ -69,6 +69,28 @@ void _DRAW_CHAR(unsigned char c){
     _cursor_x++;
 }
 
+void _DRAW_CHAR_C(unsigned char c, uint32_t color){
+    int mask[8] = {1,2,4,8,16,32,64,128};
+    unsigned char *glyph = _font_bm+(int)c*_font_h;
+
+    int _draw_x = _cursor_x * _font_w;
+    if(_draw_x >= _cmd_max_width){
+        _NEW_LINE();
+        _draw_x = _cursor_x * _font_w;
+    }
+    int _draw_y = _cursor_y * _font_h;
+
+    for(int _y = 0; _y < _font_h; _y++){
+        for(int _x = _font_w - 1; _x >= 0; _x--){
+            _draw_x++;
+            if (glyph[_y]&mask[_x]) _DRAW_PIXEL(_draw_x, _draw_y, color);
+        }
+        _draw_x -= _font_w;
+        _draw_y++;
+    }
+    _cursor_x++;
+}
+
 int _CALC_CC_LENGTH(const char *s){
     int _s = 0;
     while(s[_s] != '\0') _s++;

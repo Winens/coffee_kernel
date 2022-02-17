@@ -16,6 +16,7 @@ void _NEW_LINE();
 void Driver_Graphics_Exec(uint32_t *fb, uint32_t w, uint32_t h, uint32_t pitch);
 void _DRAW_PIXEL(int x, int y, uint32_t color);
 void _DRAW_CHAR(unsigned char c);
+void _DRAW_CHAR_C(unsigned char c, uint32_t color);
 int _CALC_CC_LENGTH(const char *s);
 void _DRAW_STRING(const char *s);
 
