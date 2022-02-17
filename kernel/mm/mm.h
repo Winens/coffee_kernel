@@ -7,6 +7,11 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdio.h>
+
+#define MM_PAGE_SIZE (4096)
+#define MM_KERNEL_BASE (0xffffffff80000000)
+#define MM_HIGHER_BASE (0xffff800000000000)
 
 struct _memory {
     size_t _total;
