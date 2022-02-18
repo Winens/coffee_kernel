@@ -4,12 +4,13 @@
 
 #include <stdint.h>
 #include <stddef.h>
+#include <stdio.h>
 #include <boot/stivale2.h>
 #include <boot/stivale2_funcs.h>
+#include <cpu/gdt.h>
 #include <drivers/graphics/graphics.h>
 #include <mm/mm.h>
-#include <stdio.h>
-#include <cpu/gdt.h>
+#include <mm/heap.h>
 
 void _start(struct stivale2_struct *stivale2_struct) {
 
@@ -19,6 +20,7 @@ void _start(struct stivale2_struct *stivale2_struct) {
     GDT_Exec();
     Driver_Graphics_Exec((uint32_t *) _framebuffer->framebuffer_addr, _framebuffer->framebuffer_width, _framebuffer->framebuffer_height, _framebuffer->framebuffer_pitch);
     Memory_Map_Exec((uint32_t *) _mmap);
+    HEAP_Exec();
 
     printf("Konnichiva!");
     for (;;) {
