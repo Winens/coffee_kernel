@@ -17,4 +17,4 @@ You Can Run With QEMU `./make_distro --run`
 - [ ] Wish Shell
 - [ ] Network Manager
 
-**End of Project**
+**End of Version 1.0**
