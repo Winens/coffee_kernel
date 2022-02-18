@@ -43,7 +43,10 @@ if [ $1 ] && [ $1 == "--confirm" ];then
     echo "Kernel file could not found! EXITED."
   fi
 elif [ $1 ] && [ $1 == "--root" ]; then
-  mkdir -p distro_root/
+  mkdir -p distro_root/usr
+  mkdir -p distro_root/root
+  mkdir -p distro_root/etc
+  mkdir -p distro_root/bin
   echo "DO NOT COPY KERNEL OR BOOTLOADER INTO THIS FOLDER 'distro_root/'"
 
 elif [ $1 ] && [ $1 == "--run" ]; then
