@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 distro_file_name="coffee_os"
 tname=">==  Coffee_OS Distro Builder  ==<"
 if [ $1 ] && [ $1 == "--confirm" ];then
