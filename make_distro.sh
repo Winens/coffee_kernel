@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 distro_file_name="coffee_os"
-tname=">==  Coffee_OS Distro Builder  ==<"
+tname=">==  Coffee Distro Builder  ==<"
 if [ $1 ] && [ $1 == "--confirm" ];then
   echo $tname
   if [ -f "coffee.elf" ]; then
@@ -21,7 +21,7 @@ if [ $1 ] && [ $1 == "--confirm" ];then
         sudo mount `cat loopback_dev`p1 build_root
         sudo mkdir build_root/boot
         sudo cp -rv limine/limine.sys build_root/boot/
-        sudo cp -rv coffee.elf build_root/boot/
+        sudo cp -rv coffee-kernel-x86_64 build_root/boot/
         sudo cp -rv limine.cfg build_root/
         sync
         sudo umount build_root

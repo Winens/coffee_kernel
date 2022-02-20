@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.0.0)
 project(coffee)
-set(KERNEL_BUILD coffee.elf)
+set(KERNEL_BUILD coffee-kernel-x86_64)
 
 include_directories(kernel)
 include_directories(kernel/dev)
