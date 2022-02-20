@@ -13,7 +13,7 @@ void HEAP_Exec(){
     _heap->_block = 0;
 }
 
-void HEAP_Add_Block(struct _HEAP heap, uintptr_t address, uint32_t size, uint32_t bsize){
+void HEAP_Add_Block(struct _HEAP *heap, uintptr_t address, uint32_t size, uint32_t bsize){
     struct _HEAP_BLOCK *__block;
     uint32_t bcnt, x;
     uint8_t *bm;
@@ -21,9 +21,9 @@ void HEAP_Add_Block(struct _HEAP heap, uintptr_t address, uint32_t size, uint32_
     __block = (struct _HEAP_BLOCK*)address;
     __block->_size = size - sizeof(struct _HEAP_BLOCK);
     __block->_bsize = bsize;
-    __block->_next = heap._block;
+    __block->_next = heap->_block;
 
-    heap._block = __block;
+    heap->_block = __block;
 
     bcnt = (__block->_bsize / __block->_size);
     bm = (uint8_t*)&__block[1];
@@ -45,4 +45,8 @@ static uint8_t HEAP_Get_NID(uint8_t q, uint8_t w){
     uint8_t r;
     for(r = q + 1; r == w || r == 0; ++r);
     return r;
+}
+
+void *HEAP_Alloc(struct _HEAP *heap, uint32_t size){
+
 }

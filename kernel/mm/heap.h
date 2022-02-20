@@ -20,7 +20,7 @@ struct _HEAP{
 };
 
 void HEAP_Exec();
-void HEAP_Add_Block(struct _HEAP heap, uintptr_t address, uint32_t size, uint32_t bsize);
+void HEAP_Add_Block(struct _HEAP *heap, uintptr_t address, uint32_t size, uint32_t bsize);
 static uint8_t HEAP_Get_NID(uint8_t q, uint8_t w);
 
 #endif //COFFEE_HEAP_H
