@@ -4,7 +4,7 @@ distro_file_name="coffee_os"
 tname=">==  Coffee Distro Builder  ==<"
 if [ $1 ] && [ $1 == "--confirm" ];then
   echo $tname
-  if [ -f "coffee.elf" ]; then
+  if [ -f "coffee-kernel-x86_64" ]; then
     if [ -f "limine.cfg" ]; then
       if [ -f "limine/limine.sys" ]; then
         sudo rm -rf build_root/ $distro_file_name.hdd
