@@ -5,6 +5,9 @@ set(KERNEL_BUILD coffee-kernel-x86_64)
 include_directories(kernel)
 include_directories(kernel/dev)
 
+# Generate compile_commands.json for coc-clangd
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 set(CMAKE_ASM_NASM_OBJECT_FORMAT elf)
 enable_language(ASM_NASM)   # Enabling NASM Assembly
 set(CMAKE_ASM_NASM_COMPILER nasm)
